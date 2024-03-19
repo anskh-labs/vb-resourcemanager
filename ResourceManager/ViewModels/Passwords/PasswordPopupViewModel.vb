@@ -32,7 +32,7 @@ Namespace ResourceManager.ViewModels
             ShowPasswordCommand = New AsyncRelayCommand(AddressOf ShowPassword)
             HidePasswordCommand = New AsyncRelayCommand(AddressOf HidePasssword)
             ImageEye = AssetManager.Instance.GetImage("Hide.png")
-
+            Pass = Nothing
             IsHidePassword = True
         End Sub
 
@@ -42,7 +42,7 @@ Namespace ResourceManager.ViewModels
         End Sub
 
         Private Function CanCopy() As Boolean
-            Return Pass.Length > 0
+            Return String.IsNullOrEmpty(Pass) = False
         End Function
 
         Private Function HidePasssword() As Task
@@ -83,7 +83,7 @@ Namespace ResourceManager.ViewModels
         End Property
         Public ReadOnly Property PasswordNotEmpty As Boolean
             Get
-                Return Pass.Length > 0
+                Return String.IsNullOrEmpty(Pass) = False
             End Get
         End Property
         Private Function CanSave() As Boolean
